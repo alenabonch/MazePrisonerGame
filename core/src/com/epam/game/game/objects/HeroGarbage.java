@@ -5,18 +5,15 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.addAction;
 
-public class Hero extends Image {
+public class HeroGarbage extends Image {
 
     Texture img;
     TextureRegion region;
@@ -28,7 +25,7 @@ public class Hero extends Image {
         batch.draw(region, getX(), getY(), getOriginX(), getOriginY(),
                 getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
-    public Hero(Texture img) {
+    public HeroGarbage(Texture img) {
         region = new TextureRegion(img);
         setBounds(getX(), getY(), getWidth(), getHeight());
         addListener(new InputListener() {
@@ -39,21 +36,21 @@ public class Hero extends Image {
                         MoveToAction moveToAction = new MoveToAction();
                         moveToAction.setPosition(200f, 200f);
                         moveToAction.setDuration(5f);
-                        Hero.this.addAction(moveToAction);
+                        HeroGarbage.this.addAction(moveToAction);
                         break;
 
                     case Input.Keys.NUM_2:
                         MoveByAction moveByAction = new MoveByAction();
                         moveByAction.setAmount(-200f, 0f);
                         moveByAction.setDuration(3f);
-                        Hero.this.addAction(moveByAction);
+                        HeroGarbage.this.addAction(moveByAction);
                         break;
 
                     case Input.Keys.NUM_3:
                         ColorAction colorAction = new ColorAction();
                         colorAction.setEndColor(Color.CYAN);
                         colorAction.setDuration(5f);
-                        Hero.this.addAction(colorAction);
+                        HeroGarbage.this.addAction(colorAction);
                         break;
 
                     case Input.Keys.NUM_4:
@@ -70,7 +67,7 @@ public class Hero extends Image {
                         rba.setAmount(90f);
                         rba.setDuration(3f);
                         ParallelAction pa = new ParallelAction(mta, sba, rba);
-                        Hero.this.addAction(pa);
+                        HeroGarbage.this.addAction(pa);
                         break;
 
                     case Input.Keys.NUM_5:
@@ -87,7 +84,7 @@ public class Hero extends Image {
                         rba1.setAmount(90f);
                         rba1.setDuration(3f);
                         SequenceAction pa1 = new SequenceAction(mta1, sba1, rba1);
-                        Hero.this.addAction(pa1);
+                        HeroGarbage.this.addAction(pa1);
                         break;
 
                     case Input.Keys.SPACE:
