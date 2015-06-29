@@ -54,8 +54,9 @@ public class Hero extends Actor implements Moveable{
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(texture, this.get_x(), this.get_y(), this.get_x(),
-                this.get_y(), this.getWidth(), this.getHeight(),
+
+        batch.draw(texture, getX(), getY(), this.getOriginX(),
+                this.getOriginY(), Constants.CELL_SIZE, Constants.CELL_SIZE,
                 this.getScaleX(), this.getScaleY(), this.getRotation(), 0, 0,
                 texture.getWidth(), texture.getHeight(), false, false);
     }

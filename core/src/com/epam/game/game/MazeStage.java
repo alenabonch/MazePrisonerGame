@@ -12,7 +12,6 @@ import com.epam.game.game.logic.*;
 import java.util.List;
 
 import static com.epam.game.game.logic.Constants.*;
-import static com.epam.game.game.logic.Constants.FIELD_SIZE;
 
 public class MazeStage extends Stage {
 
@@ -25,20 +24,32 @@ public class MazeStage extends Stage {
     }
 
     public void init() {
-        Model model = new Model();
+        final Model model = new Model();
         final Controller controller = new Controller();
         model.addListener(controller);
 
+        /*final int level = model.getLogic().getState().get_levelNum();*/
+
         View view = new View() {
-            private Cell[][] cells = new Cell[FIELD_SIZE][FIELD_SIZE];
+            private Cell[][] cells = new Cell[model.getLogic().getState().getNowLevel().getMapSizeX()][model.getLogic().getState().getNowLevel().getMapSizeY()];
+
+            public void updateLevel(Level level) {
+
+            }
+
+
 
             @Override
             protected void drawTexture(int textureIndex, int x, int y) {
+
                 if (cells[x][y] == null) {
                     Cell cell = new Cell(textureIndex);
                     cells[x][y] = cell;
                     MazeStage.this.addActor(cell);
                     cell.setBounds(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                }
+                else{
+                    cells[x][y].setTextureIndex(textureIndex);
                 }
             }
 
@@ -46,7 +57,7 @@ public class MazeStage extends Stage {
             protected void drawHero(Hero hero) {
                 MazeStage.this.addActor(hero);
                 hero.setBounds(hero.get_x() * CELL_SIZE, hero.get_y() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-                hero.setPosition(hero.get_x(), hero.get_y());
+//                hero.setPosition(hero.get_x(), hero.get_y());
             }
 
             @Override

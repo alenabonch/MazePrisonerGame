@@ -15,15 +15,15 @@ public class Constants {
 	public static final int VISIBLE_TEXTURE_INDEX = 2;
 
     public static final int SIZE_STEP_MAP = 10;
-    public static final int MIN_SIZE_MAP_X = 9;
-    public static final int MIN_SIZE_MAP_Y = 5;
+    public static final int MIN_SIZE_MAP_X = 19;
+    public static final int MIN_SIZE_MAP_Y = 15;
     public static final int HERO_TEXTURE = 6;
 
     public static final int CELL_SIZE = 20;
+	public static final int FIELD_SIZE = 15;
 
     public static final int ORIGIN_X = 50;
     public static final int ORIGIN_Y = 750;
     public static final int SIZE_OF_BAG = 5;
 
-	public static final int FIELD_SIZE = 15;
 }

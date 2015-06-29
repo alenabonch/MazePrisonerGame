@@ -5,16 +5,15 @@ import java.util.List;
 
 public class Model {
 
-	Logic _logic;
+	Logic logic;
 	List<ModelListener> _listeners = new ArrayList<ModelListener>();
 
 	public Model() {
 
 		State state = new State();
-		Hero hero = new Hero(state.getNowLevel().get_map().getStartX(), state.getNowLevel().get_map().getStartY());
+		Hero hero = new Hero(state.getNowLevel().getMap().getStartX(), state.getNowLevel().getMap().getStartY());
 		state.setHero(hero);
-		_logic = new Logic(state);
-
+		logic = new Logic(state);
 	}
 
 
@@ -26,34 +25,40 @@ public class Model {
 		_listeners.remove(listener);
 	}
 
+
+	public Logic getLogic() {
+		return logic;
+	}
+
+
 	void fireChangedEvent(){
 		for (ModelListener modelListener : _listeners) {
-			modelListener.onChange(_logic.getState());
+			modelListener.onChange(logic.getState());
 		}
 	}
 
 	public void moveLeft(){
-		if(_logic.moveLeft()){
+		if(logic.moveLeft()){
 			fireChangedEvent();
 		}
 	}
 	public void moveRight(){
-		if(_logic.moveRight()){
+		if(logic.moveRight()){
 			fireChangedEvent();
 		}
 	}
 	public void moveUp(){
-		if(_logic.moveUp()){
+		if(logic.moveUp()){
 			fireChangedEvent();
 		}
 	}
 	public void moveDown(){
-		if(_logic.moveDown()){
+		if(logic.moveDown()){
 			fireChangedEvent();
 		}
 	}
 	public void openEyes(){
-		_logic.openEyes(_logic.getState().getHero().get_x(), _logic.getState().getHero().get_y());
+		logic.openEyes(logic.getState().getHero().get_x(), logic.getState().getHero().get_y());
 		fireChangedEvent();
 	}
 	

@@ -13,10 +13,10 @@ public class View {
 	}
 
 	public void draw(State state) {
-		drawMap(state.getNowLevel().get_map().getData());
+		drawMap(state.getNowLevel().getMap().getData());
 		drawHero(state.getHero());
-//		drawThings(state.getNowLevel().get_things(), state.getNowLevel().get_map().getData());
-//		drawMobs(state.getNowLevel().get_mobs(), state.getNowLevel().get_map().getData());
+//		drawThings(state.getNowLevel().get_things(), state.getNowLevel().getMap().getData());
+//		drawMobs(state.getNowLevel().get_mobs(), state.getNowLevel().getMap().getData());
 	}
 
 	protected void drawMobs(List<Mob> get_mobs, int[][] data) {

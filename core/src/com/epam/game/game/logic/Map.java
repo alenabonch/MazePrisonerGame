@@ -8,12 +8,11 @@ public class Map implements Cloneable{
 	private int _width;
 	private int _heigth;
 
-	Map(final int wigth,final int heigth) {
-		_map = createMap(wigth, heigth);
+	Map(final int width,final int height) {
+		_map = createMap(width, height);
 		_heigth = _map.length;
 		_width = _map[_heigth - 1].length;
 	}
-
 
 	public boolean ifFree(final int x,final int y){
 		if((x >= 0) && (x < _width) && (y >= 0) && (y < _heigth)){
@@ -28,16 +27,17 @@ public class Map implements Cloneable{
 		return _map;
 	}
 
-	private int[][] createMap(int wigth, int heigth){
-		_startX = 1;
-		_startY = 1;
-		if (wigth % 2 == 0)
-			wigth++;
 
-		if (heigth % 2 == 0)
-			heigth++;
+	private int[][] createMap(int width, int height){
+		_startX = 3;
+		_startY = 3;
+		if (width % 2 == 0)
+			width++;
 
-		return generateLabyrinth(new int[heigth][wigth]);
+		if (height % 2 == 0)
+			height++;
+
+		return generateLabyrinth(new int[height][width]);
 	}
 	public int getStartX() {
 		return _startX;
@@ -70,7 +70,7 @@ public class Map implements Cloneable{
 		for (int i = 0; i < cleanArray.length; i++) {
 			for (int j = 0; j < cleanArray[i].length; j++) {
 				if((i == 0) || (j == 0) || (i == cleanArray.length - 1) || (j == cleanArray[i].length - 1)){
-					cleanArray[i][j] = 3;
+					cleanArray[i][j] = 3;//todo
 				}
 			}
 
