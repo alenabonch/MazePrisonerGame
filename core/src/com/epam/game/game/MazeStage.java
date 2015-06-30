@@ -70,7 +70,7 @@ public class MazeStage extends Stage {
             protected void drawThings(List<Item> get_things, int[][] data) {
 
                 for (Item item : get_things) {
-                    if(true/*(data[item.get_y()][item.get_x()] / Constants.NUMBER_OF_TEXTURE ) == Constants.VISIBLE_TEXTURE_INDEX*/  ) {
+                    if((data[item.get_y()][item.get_x()] % Constants.NUMBER_OF_TEXTURE ) == Constants.VISIBLE_TEXTURE_INDEX  ) {
                         System.out.println("ITEM !!!");
                         MazeStage.this.addActor(item);
                         Gdx.app.log(TAG, "Added actor item");

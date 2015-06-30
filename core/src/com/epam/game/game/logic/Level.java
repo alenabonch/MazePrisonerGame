@@ -16,7 +16,7 @@ public class Level {
 	private Map map;
 	private List<Mob> _mobs = new LinkedList<Mob>();
 	private List<Item> _things = new LinkedList<Item>();
-    private int itemNumber = 1;
+    private int itemNumber = 4;
 
     public Level(int level) {
 		map = new Map(SIZE_MAP_X, SIZE_MAP_Y);
