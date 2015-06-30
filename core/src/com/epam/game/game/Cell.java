@@ -11,15 +11,18 @@ import static com.epam.game.game.logic.Constants.NUMBER_OF_TEXTURE;
 
 public class Cell extends Actor {
 
+    private static final String TAG = Cell.class.getName();
+
     private Texture texture;
     private int calc;
-    static private Texture[] ARRAYSOFTEXTURES = {
-            new Texture(Gdx.files.internal("black.png")),
-            new Texture(Gdx.files.internal("grass11.png")),
-            new Texture(Gdx.files.internal("grass22.png")),
+    static private Texture[] ARRAYS_OF_TEXTURES = {
+            new Texture(Gdx.files.internal("fog3.jpg")),
+            new Texture(Gdx.files.internal("grass-dark.png")),
+            new Texture(Gdx.files.internal("grass.png")),
             new Texture(Gdx.files.internal("wall444.png")),
             new Texture(Gdx.files.internal("wall1.png")),
-//            new Texture(Gdx.files.internal("girl.png"))
+            new Texture(Gdx.files.internal("castle.png")),
+            new Texture(Gdx.files.internal("castle.png")),
     };
 
     public Cell(int textureIndex){
@@ -27,16 +30,17 @@ public class Cell extends Actor {
     }
 
     public void setTextureIndex(int textureIndex) {
+//        if (textureIndex > ARRAYS_OF_TEXTURES.length - 1) {
+//            return;
+//        }
 
         if (textureIndex % NUMBER_OF_TEXTURE == 0){
-            texture = ARRAYSOFTEXTURES[0];
-        }
-        else
-        {
+            texture = ARRAYS_OF_TEXTURES[0];
+        } else {
             calc = (textureIndex / NUMBER_OF_TEXTURE) * (NUMBER_OF_TEXTURE - 1)
                     + (textureIndex % NUMBER_OF_TEXTURE);
             System.out.println(calc);
-            texture = ARRAYSOFTEXTURES[calc];
+            texture = ARRAYS_OF_TEXTURES[calc];
         }
 
     }
@@ -49,9 +53,4 @@ public class Cell extends Actor {
                 texture.getWidth(), texture.getHeight(), false, false);
     }
 
-//	public void draw(SpriteBatch batch,int x, int y){
-//		sprite.setPosition(x - MazePrisonerGame.FIELD_SIZE/2 - sprite.getWidth()/2,
-//						y -  MazePrisonerGame.FIELD_SIZE/2 - sprite.getHeight()/2);
-//		sprite.draw(batch);
-//	}
 }

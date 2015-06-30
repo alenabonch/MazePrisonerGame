@@ -1,21 +1,29 @@
 package com.epam.game.game.logic;
 
+import com.badlogic.gdx.Gdx;
+import com.epam.game.game.GeneratorItem;
+
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.epam.game.game.logic.Constants.SIZE_MAP_X;
+import static com.epam.game.game.logic.Constants.SIZE_MAP_Y;
+
 public class Level {
 
+    private static final String TAG = Level.class.getName();
+
 	private Map map;
-	private int mapSizeX;
-	private int mapSizeY;
 	private List<Mob> _mobs = new LinkedList<Mob>();
 	private List<Item> _things = new LinkedList<Item>();
-
+    private int itemNumber = 1;
 
     public Level(int level) {
-		mapSizeX = Constants.MIN_SIZE_MAP_X + level * Constants.SIZE_STEP_MAP;
-		mapSizeY = Constants.MIN_SIZE_MAP_Y + level * Constants.SIZE_STEP_MAP;
-		map = new Map(mapSizeX, mapSizeY);
+		map = new Map(SIZE_MAP_X, SIZE_MAP_Y);
+        for (int i = 0; i < itemNumber; i++) {
+            _things.add(GeneratorItem.CreateItem(map,_things));
+        }
+        Gdx.app.log(TAG, "Level created: " + level);
 	}
 
 	public Map getMap() {
@@ -25,14 +33,6 @@ public class Level {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public int getMapSizeX() {
-		return mapSizeX;
-	}
-
-	public int getMapSizeY() {
-		return mapSizeY;
 	}
 
 	public List<Mob> get_mobs() {

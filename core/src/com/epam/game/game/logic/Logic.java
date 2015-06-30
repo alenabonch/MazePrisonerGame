@@ -2,6 +2,8 @@ package com.epam.game.game.logic;
 
 public class Logic {
 
+	private static final String TAG = Logic.class.getName();
+
 	private State _state;
 
 	public Logic(final State state) {
@@ -9,9 +11,10 @@ public class Logic {
 	}
 
 	boolean moveLeft(){
-		if(_state.getNowLevel().getMap().ifFree(_state.getHero().get_x() - Constants.STEP_SIZE, _state.getHero().get_y()))
+		if(canGo(-1 ,0))
 		{
 			_state.getHero().moveLeft();
+			activeTexture();
 			recalculateVisibility();
 			return true;
 		}
@@ -19,9 +22,10 @@ public class Logic {
 	}
 
 	boolean moveRight(){
-		if(_state.getNowLevel().getMap().ifFree(_state.getHero().get_x() + Constants.STEP_SIZE, _state.getHero().get_y()))
+		if(canGo(1, 0))
 		{
 			_state.getHero().moveRight();
+			activeTexture();
 			recalculateVisibility();
 			return true;
 		}
@@ -29,9 +33,10 @@ public class Logic {
 	}
 
 	boolean moveDown(){
-		if(_state.getNowLevel().getMap().ifFree(_state.getHero().get_x(), _state.getHero().get_y() - Constants.STEP_SIZE))
+		if(canGo(0, -1))
 		{
 			_state.getHero().moveDown();
+			activeTexture();
 			recalculateVisibility();
 			return true;
 		}
@@ -39,9 +44,10 @@ public class Logic {
 	}
 
 	boolean moveUp(){
-		if(_state.getNowLevel().getMap().ifFree(_state.getHero().get_x(), _state.getHero().get_y() + Constants.STEP_SIZE))
+		if(canGo(0, 1))
 		{
 			_state.getHero().moveUp();
+			activeTexture();
 			recalculateVisibility();
 			return true;
 		}
@@ -56,7 +62,7 @@ public class Logic {
 		}
 		openEyes(_state.getHero().get_x(),_state.getHero().get_y());
 	}
-	void openEyes(int x, int y){
+	void openEyes(final int x,final int y){
 		int rX = x, lX = x, uY = y, dY = y;
 		while((_state.getNowLevel().getMap().ifFree(rX, y)) && (rX <= x + Constants.MAX_VIEW_SIZE)){
 			rX++;
@@ -79,6 +85,29 @@ public class Logic {
 			for (int i = x - 1; i <= x + 1; i++) {
 				_state.getNowLevel().getMap().showCell(i, j);
 			}
+		}
+	}
+
+	private boolean canGo(int x, int y){
+		if (_state.getNowLevel().getMap().ifFree(_state.getHero().get_x() + x * Constants.STEP_SIZE, _state.getHero().get_y() + y * Constants.STEP_SIZE)){
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	private void activeTexture(){
+		int x = _state.getHero().get_x();
+		int y = _state.getHero().get_y();
+		switch (_state.getNowLevel().getMap().ActiveTeture(x, y)) {
+			case Constants.EXIT_CLASS_TEXTURE_INDEX:
+				_state.incLevel();
+				break;
+			default:
+				break;
 		}
 	}
 

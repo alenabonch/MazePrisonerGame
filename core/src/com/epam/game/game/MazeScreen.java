@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 
 public class MazeScreen implements Screen {
 
+    private static final String TAG = MazeScreen.class.getName();
+
     MazeStage stage;
 
     @Override
@@ -19,8 +21,11 @@ public class MazeScreen implements Screen {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+ //       Gdx.app.log(TAG, "stage act");
         stage.act(delta);
+  //      Gdx.app.log(TAG, "stage draw");
         stage.draw();
+
     }
 
     @Override

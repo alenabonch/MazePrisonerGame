@@ -1,10 +1,14 @@
 package com.epam.game.game.logic;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.List;
 
 import static com.epam.game.game.logic.Constants.*;
 
 public class View {
+
+	private static final String TAG = View.class.getName();
 
 	private Graphics _graphics;
 
@@ -13,9 +17,10 @@ public class View {
 	}
 
 	public void draw(State state) {
+		Gdx.app.log(TAG, "in draw(state)");
 		drawMap(state.getNowLevel().getMap().getData());
 		drawHero(state.getHero());
-//		drawThings(state.getNowLevel().get_things(), state.getNowLevel().getMap().getData());
+		drawThings(state.getNowLevel().get_things(),state.getNowLevel().getMap().getData());
 //		drawMobs(state.getNowLevel().get_mobs(), state.getNowLevel().getMap().getData());
 	}
 
@@ -23,8 +28,8 @@ public class View {
 		// TODO Auto-generated method stub
 	}
 
-	protected void drawThings(List<Thing> get_things, int[][] data) {
-		// TODO Auto-generated method stub
+	protected void drawThings(List<Item> get_things,int[][] data) {
+		// TODO
 	}
 
 	protected void drawHero(Hero hero) {

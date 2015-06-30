@@ -2,6 +2,8 @@ package com.epam.game.game.logic;
 
 public class Controller implements ModelListener{
 
+	private static final String TAG = Controller.class.getName();
+
 	private View _view;
 	private Model _model;
 
@@ -16,7 +18,6 @@ public class Controller implements ModelListener{
 
 	public void setModel(Model model) {
 		_model = model;
-		
 	}
 	public void setView(View view) {
 		_view = view;		
@@ -37,8 +38,4 @@ public class Controller implements ModelListener{
 	public void moveDown() {
 		_model.moveDown();
 	}
-
-
-
-	
 }

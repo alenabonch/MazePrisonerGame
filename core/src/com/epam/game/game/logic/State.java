@@ -1,7 +1,11 @@
 package com.epam.game.game.logic;
 
 
+import com.badlogic.gdx.Gdx;
+
 public class State implements Cloneable{
+
+	private static final String TAG = State.class.getName();
 
 	Level[] _levels = new Level[Constants.MAX_LEVEL];
 	Hero _hero;
@@ -10,7 +14,7 @@ public class State implements Cloneable{
 	public State() {
 		_levelNum = 0;
 		_levels[_levelNum] = new Level(_levelNum);
-
+		Gdx.app.log(TAG, "In state constructor");
 	}
 	public Hero getHero() {
 		return _hero;
@@ -37,6 +41,8 @@ public class State implements Cloneable{
 			//Game End!! YOU WIN!
 		}else if (_levels[_levelNum] == null){
 			_levels[_levelNum] = new Level(_levelNum);
+			_hero.set_x(getNowLevel().getMap().getStartX());
+			_hero.set_y(getNowLevel().getMap().getStartY());
 		}
 	}
 	public void decLevel(){
