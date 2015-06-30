@@ -1,5 +1,7 @@
 package com.epam.game.game.logic;
 
+import com.epam.game.game.utils.Constants;
+
 public class Logic {
 
 	private static final String TAG = Logic.class.getName();
@@ -55,41 +57,41 @@ public class Logic {
 
 	}
 	void recalculateVisibility(){
-		for (int i = _state.getHero().get_x() - Constants.MAX_VIEW_SIZE_RECALCULATE; i <= _state.getHero().get_x() + Constants.MAX_VIEW_SIZE_RECALCULATE; i++) {
-			for (int j = _state.getHero().get_y() - Constants.MAX_VIEW_SIZE_RECALCULATE; j <= _state.getHero().get_y() + Constants.MAX_VIEW_SIZE_RECALCULATE; j++) {
-				_state.getNowLevel().getMap().hideCell(i, j);
+		for (int i = _state.getHero().getHeroX() - Constants.MAX_VIEW_SIZE_RECALCULATE; i <= _state.getHero().getHeroX() + Constants.MAX_VIEW_SIZE_RECALCULATE; i++) {
+			for (int j = _state.getHero().getHeroY() - Constants.MAX_VIEW_SIZE_RECALCULATE; j <= _state.getHero().getHeroY() + Constants.MAX_VIEW_SIZE_RECALCULATE; j++) {
+				_state.getCurrentLevel().getMap().hideCell(i, j);
 			}
 		}
-		openEyes(_state.getHero().get_x(),_state.getHero().get_y());
+		openEyes(_state.getHero().getHeroX(),_state.getHero().getHeroY());
 	}
 	void openEyes(final int x,final int y){
 		int rX = x, lX = x, uY = y, dY = y;
-		while((_state.getNowLevel().getMap().ifFree(rX, y)) && (rX <= x + Constants.MAX_VIEW_SIZE)){
+		while((_state.getCurrentLevel().getMap().ifFree(rX, y)) && (rX <= x + Constants.MAX_VIEW_SIZE)){
 			rX++;
 		}
-		while((_state.getNowLevel().getMap().ifFree(lX, y)) && (lX >= x - Constants.MAX_VIEW_SIZE)){
+		while((_state.getCurrentLevel().getMap().ifFree(lX, y)) && (lX >= x - Constants.MAX_VIEW_SIZE)){
 			lX--;
 		}
-		while((_state.getNowLevel().getMap().ifFree(x, uY)) && (uY <= y + Constants.MAX_VIEW_SIZE)){
+		while((_state.getCurrentLevel().getMap().ifFree(x, uY)) && (uY <= y + Constants.MAX_VIEW_SIZE)){
 			uY++;
 		}
-		while((_state.getNowLevel().getMap().ifFree(x, dY)) && (dY >= y - Constants.MAX_VIEW_SIZE)){
+		while((_state.getCurrentLevel().getMap().ifFree(x, dY)) && (dY >= y - Constants.MAX_VIEW_SIZE)){
 			dY--;
 		}
 		for (int i = lX; i <= rX; i++) {
 			for (int j = y - 1; j <= y + 1; j++) {
-				_state.getNowLevel().getMap().showCell(i, j);
+				_state.getCurrentLevel().getMap().showCell(i, j);
 			}
 		}
 		for (int j = dY; j <= uY; j++) {
 			for (int i = x - 1; i <= x + 1; i++) {
-				_state.getNowLevel().getMap().showCell(i, j);
+				_state.getCurrentLevel().getMap().showCell(i, j);
 			}
 		}
 	}
 
 	private boolean canGo(int x, int y){
-		if (_state.getNowLevel().getMap().ifFree(_state.getHero().get_x() + x * Constants.STEP_SIZE, _state.getHero().get_y() + y * Constants.STEP_SIZE)){
+		if (_state.getCurrentLevel().getMap().ifFree(_state.getHero().getHeroX() + x * Constants.STEP_SIZE, _state.getHero().getHeroY() + y * Constants.STEP_SIZE)){
 			return true;
 		}
 		else
@@ -100,9 +102,9 @@ public class Logic {
 	}
 
 	private void activeTexture(){
-		int x = _state.getHero().get_x();
-		int y = _state.getHero().get_y();
-		switch (_state.getNowLevel().getMap().ActiveTeture(x, y)) {
+		int x = _state.getHero().getHeroX();
+		int y = _state.getHero().getHeroY();
+		switch (_state.getCurrentLevel().getMap().activeTexture(x, y)) {
 			case Constants.EXIT_CLASS_TEXTURE_INDEX:
 				_state.incLevel();
 				break;

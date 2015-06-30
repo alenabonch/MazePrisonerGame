@@ -1,4 +1,4 @@
-package com.epam.game.game.logic;
+package com.epam.game.game.utils;
 
 
 import java.util.Random;

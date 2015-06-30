@@ -2,52 +2,59 @@ package com.epam.game.game.logic;
 
 
 import com.badlogic.gdx.Gdx;
+import com.epam.game.game.actors.Hero;
+import com.epam.game.game.utils.Constants;
 
 public class State implements Cloneable{
 
 	private static final String TAG = State.class.getName();
 
-	Level[] _levels = new Level[Constants.MAX_LEVEL];
-	Hero _hero;
-	int _levelNum;
+	Level[] levels = new Level[Constants.MAX_LEVEL];
+	Hero hero;
+	int levelNum;
 
 	public State() {
-		_levelNum = 0;
-		_levels[_levelNum] = new Level(_levelNum);
+		levelNum = 0;
+		levels[levelNum] = new Level(levelNum);
 		Gdx.app.log(TAG, "In state constructor");
 	}
+
 	public Hero getHero() {
-		return _hero;
+		return hero;
 	}
 
 	public void setHero(Hero _hero) {
-		this._hero = _hero;
+		this.hero = _hero;
 	}
 
-	public int get_levelNum() {
-		return _levelNum;
+	public int getLevelNum() {
+		return levelNum;
 	}
 
-	public Level getNowLevel(){
-		return _levels[_levelNum];
+	public Level getCurrentLevel(){
+		return levels[levelNum];
 	}
+
 	public Level getLevel(int levelNum){
-		return _levels[levelNum];
+		return levels[levelNum];
 	}
 
 	public void incLevel(){
-		_levelNum++;
-		if(_levelNum > Constants.MAX_LEVEL){
+
+		levelNum++;
+		if(levelNum > Constants.MAX_LEVEL){
 			//Game End!! YOU WIN!
-		}else if (_levels[_levelNum] == null){
-			_levels[_levelNum] = new Level(_levelNum);
-			_hero.set_x(getNowLevel().getMap().getStartX());
-			_hero.set_y(getNowLevel().getMap().getStartY());
+		}else if (levels[levelNum] == null){
+			levels[levelNum] = new Level(levelNum);
+			hero.setHeroX(getCurrentLevel().getMap().getStartX());
+			hero.setHeroY(getCurrentLevel().getMap().getStartY());
 		}
 	}
+
 	public void decLevel(){
-		_levelNum--;
+		levelNum--;
 	}
+
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		return super.clone();

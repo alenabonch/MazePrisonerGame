@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
-public class HeroGarbage extends Image {
+public class HeroScratched extends Image {
 
     Texture img;
     TextureRegion region;
@@ -25,7 +25,7 @@ public class HeroGarbage extends Image {
         batch.draw(region, getX(), getY(), getOriginX(), getOriginY(),
                 getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
-    public HeroGarbage(Texture img) {
+    public HeroScratched(Texture img) {
         region = new TextureRegion(img);
         setBounds(getX(), getY(), getWidth(), getHeight());
         addListener(new InputListener() {
@@ -36,21 +36,21 @@ public class HeroGarbage extends Image {
                         MoveToAction moveToAction = new MoveToAction();
                         moveToAction.setPosition(200f, 200f);
                         moveToAction.setDuration(5f);
-                        HeroGarbage.this.addAction(moveToAction);
+                        HeroScratched.this.addAction(moveToAction);
                         break;
 
                     case Input.Keys.NUM_2:
                         MoveByAction moveByAction = new MoveByAction();
                         moveByAction.setAmount(-200f, 0f);
                         moveByAction.setDuration(3f);
-                        HeroGarbage.this.addAction(moveByAction);
+                        HeroScratched.this.addAction(moveByAction);
                         break;
 
                     case Input.Keys.NUM_3:
                         ColorAction colorAction = new ColorAction();
                         colorAction.setEndColor(Color.CYAN);
                         colorAction.setDuration(5f);
-                        HeroGarbage.this.addAction(colorAction);
+                        HeroScratched.this.addAction(colorAction);
                         break;
 
                     case Input.Keys.NUM_4:
@@ -67,7 +67,7 @@ public class HeroGarbage extends Image {
                         rba.setAmount(90f);
                         rba.setDuration(3f);
                         ParallelAction pa = new ParallelAction(mta, sba, rba);
-                        HeroGarbage.this.addAction(pa);
+                        HeroScratched.this.addAction(pa);
                         break;
 
                     case Input.Keys.NUM_5:
@@ -84,7 +84,7 @@ public class HeroGarbage extends Image {
                         rba1.setAmount(90f);
                         rba1.setDuration(3f);
                         SequenceAction pa1 = new SequenceAction(mta1, sba1, rba1);
-                        HeroGarbage.this.addAction(pa1);
+                        HeroScratched.this.addAction(pa1);
                         break;
 
                     case Input.Keys.SPACE:

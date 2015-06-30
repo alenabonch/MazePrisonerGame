@@ -1,19 +1,20 @@
-package com.epam.game.game.logic;
+package com.epam.game.game.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.epam.game.game.utils.Constants;
 
-import static com.epam.game.game.logic.Constants.NUMBER_OF_TEXTURE;
+import static com.epam.game.game.utils.Constants.NUMBER_OF_TEXTURE;
 
 public class Item extends Actor {
 
     private static final String TAG = Item.class.getName();
-    private int _x;
-    private int _y;
+    private int itemX;
+    private int itemY;
     private Texture texture;
-    private int calc;
+
     static private Texture[] ARRAYS_OF_TEXTURES = {
             new Texture(Gdx.files.internal("key1.png")),
             new Texture(Gdx.files.internal("key1.png")),
@@ -32,18 +33,18 @@ public class Item extends Actor {
 
     public Item(int x, int y, int itemID) {
         Gdx.app.log(TAG, "in constructor, hero created in x: " + x + ", y: " + y);
-        _x = x;
-        _y = y;
+        itemX = x;
+        itemY = y;
         texture = ARRAYS_OF_TEXTURES[itemID];
     }
 
-    public int get_x() {
-        return _x;
+    public int getItemX() {
+        return itemX;
     }
 
 
-    public int get_y() {
-        return _y;
+    public int getItemY() {
+        return itemY;
     }
 
     public static int getNumberOfItems(){
@@ -59,8 +60,6 @@ public class Item extends Actor {
                 texture.getWidth(), texture.getHeight(), false, false);
     }
 
-
-
     public void setTextureIndex(int textureIndex) {
 
         if (textureIndex % NUMBER_OF_TEXTURE == 0){
@@ -68,7 +67,7 @@ public class Item extends Actor {
         }
         else
         {
-            calc = (textureIndex / NUMBER_OF_TEXTURE) * (NUMBER_OF_TEXTURE - 1)
+            int calc = (textureIndex / NUMBER_OF_TEXTURE) * (NUMBER_OF_TEXTURE - 1)
                     + (textureIndex % NUMBER_OF_TEXTURE);
             System.out.println(calc);
             texture = ARRAYS_OF_TEXTURES[calc];

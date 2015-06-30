@@ -1,6 +1,7 @@
 package com.epam.game.game.logic;
 
 import com.badlogic.gdx.Gdx;
+import com.epam.game.game.actors.Hero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,11 @@ public class Model {
 	Logic logic;
     State state;
     Hero hero;
-	List<ModelListener> _listeners = new ArrayList<ModelListener>();
+	List<ModelListener> listeners = new ArrayList<ModelListener>();
 
 	public Model() {
 		state = new State();
-		hero = new Hero(state.getNowLevel().getMap().getStartX(), state.getNowLevel().getMap().getStartY());
+		hero = new Hero(state.getCurrentLevel().getMap().getStartX(), state.getCurrentLevel().getMap().getStartY());
 		state.setHero(hero);
 		logic = new Logic(state);
         Gdx.app.log(TAG, "Model created with hero: " + hero);
@@ -24,11 +25,11 @@ public class Model {
 
 
 	public void addListener(ModelListener listener){
-		_listeners.add(listener);
+		listeners.add(listener);
 	}
 
 	public void removeListener(ModelListener listener){
-		_listeners.remove(listener);
+		listeners.remove(listener);
 	}
 
 
@@ -38,7 +39,7 @@ public class Model {
 
 
 	void fireChangedEvent(){
-		for (ModelListener modelListener : _listeners) {
+		for (ModelListener modelListener : listeners) {
 			modelListener.onChange(logic.getState());
 		}
 	}
@@ -64,7 +65,7 @@ public class Model {
 		}
 	}
 	public void openEyes(){
-		logic.openEyes(logic.getState().getHero().get_x(), logic.getState().getHero().get_y());
+		logic.openEyes(logic.getState().getHero().getHeroX(), logic.getState().getHero().getHeroY());
 		fireChangedEvent();
 	}
 

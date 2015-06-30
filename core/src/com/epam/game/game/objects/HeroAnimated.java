@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Scaling;
  * Animated scene2d actor. Similar to {@link Image} but uses {@link Animation} instead of a {@link Drawable}.
  * @author Pimentoso
  */
-public class AnimatedHero extends Widget {
+public class HeroAnimated extends Widget {
 
     private Scaling scaling;
     private int align = Align.center;
@@ -26,11 +26,11 @@ public class AnimatedHero extends Widget {
     public int state;
     public float stateTime;
 
-    public AnimatedHero(Animation animation) {
+    public HeroAnimated(Animation animation) {
         this(animation, Scaling.stretch, Align.center);
     }
 
-    public AnimatedHero(Animation animation, Scaling scaling, int align) {
+    public HeroAnimated(Animation animation, Scaling scaling, int align) {
         setAnimation(animation);
         this.scaling = scaling;
         this.align = align;

@@ -1,55 +1,55 @@
 package com.epam.game.game.logic;
 
 import com.badlogic.gdx.Gdx;
-import com.epam.game.game.GeneratorMap;
+import com.epam.game.game.utils.Constants;
 
 public class Map implements Cloneable{
 
     private static final String TAG = Map.class.getName();
 
 
-    private int _startHeroX;
-    private int _startHeroY;
+    private int startHeroX;
+    private int startHeroY;
 
-    private int _exitY;
-    private int _exitX;
+    private int exitY;
+    private int exitX;
 
-    private int[][] _map;
-    private int _width;
-    private int _heigth;
+    private int[][] map;
+    private int width;
+    private int height;
 
 
     Map(final int width,final int height) {
-        _map = createMap(width, height);
+        map = createMap(width, height);
         findExit();
-        _heigth = _map.length;
-        _width = _map[_heigth - 1].length;
+        this.height = map.length;
+        this.width = map[this.height - 1].length;
         Gdx.app.log(TAG, "Map created, width = " + width + " height = " + height);
 	}
 
-    public int get_exitY() {
-        return _exitY;
+    public int getExitY() {
+        return exitY;
     }
 
-    public int get_exitX() {
-        return _exitX;
+    public int getExitX() {
+        return exitX;
     }
 
     public int getWidth() {
-        return _width;
+        return width;
     }
 
-    public int getHeigth() {
-        return _heigth;
+    public int getHeight() {
+        return height;
     }
 
     public boolean inMap(final int x,final int y){
-        return ((x >= 0) && (x < _width) && (y >= 0) && (y < _heigth));
+        return ((x >= 0) && (x < width) && (y >= 0) && (y < height));
     }
 
     public boolean ifFree(final int x,final int y){
         if(inMap(x,y)){
-            if ((_map[y][x] / Constants.NUMBER_OF_TEXTURE) == Constants.WALL_CLASS_TEXTURE_INDEX){
+            if ((map[y][x] / Constants.NUMBER_OF_TEXTURE) == Constants.WALL_CLASS_TEXTURE_INDEX){
                 return false;
             }
             return true;
@@ -58,7 +58,7 @@ public class Map implements Cloneable{
     }
     public boolean ifExit(final int x,final int y){
         if(inMap(x,y)){
-            if ((_map[y][x] / Constants.NUMBER_OF_TEXTURE) == Constants.EXIT_CLASS_TEXTURE_INDEX){
+            if ((map[y][x] / Constants.NUMBER_OF_TEXTURE) == Constants.EXIT_CLASS_TEXTURE_INDEX){
                 return true;
             }
             return false;
@@ -66,10 +66,9 @@ public class Map implements Cloneable{
         return false;
     }
 
-    public int ActiveTeture (final int x,final int y){
+    public int activeTexture(final int x, final int y){
         if(inMap(x,y)){
             if (ifExit(x, y)){
-
                 return Constants.EXIT_CLASS_TEXTURE_INDEX;
             }
             else
@@ -82,40 +81,40 @@ public class Map implements Cloneable{
 
 
     public int[][] getData() {
-        return _map;
+        return map;
     }
 
-    private int[][] createMap(int wigth, int heigth){
-        _startHeroX = 1;
-        _startHeroY = 1;
-        if (wigth % 2 == 0)
-            wigth++;
+    private int[][] createMap(int width, int height){
+        startHeroX = 1;
+        startHeroY = 1;
+        if (width % 2 == 0)
+            width++;
 
-        if (heigth % 2 == 0)
-            heigth++;
+        if (height % 2 == 0)
+            height++;
 
-        return GeneratorMap.generateLabyrinth(new int[heigth][wigth]);
+        return MapGenerator.generateMaze(new int[height][width]);
     }
     public int getStartX() {
-        return _startHeroX;
+        return startHeroX;
     }
 
 
     public int getStartY() {
-        return _startHeroY;
+        return startHeroY;
     }
 
 
     public void hideCell(final int x,final int y){
-        if((x >= 0) && (x < _width) && (y >= 0) && (y < _heigth)){
-            if((_map[y][x] % Constants.NUMBER_OF_TEXTURE) == Constants.VISIBLE_TEXTURE_INDEX){
-                _map[y][x]--;
+        if((x >= 0) && (x < width) && (y >= 0) && (y < height)){
+            if((map[y][x] % Constants.NUMBER_OF_TEXTURE) == Constants.VISIBLE_TEXTURE_INDEX){
+                map[y][x]--;
             }
         }
     }
     public void showCell(final int x,final int y){
-        if((x >= 0) && (x < _width) && (y >= 0) && (y < _heigth)){
-            _map[y][x] = _map[y][x] - (_map[y][x] % Constants.NUMBER_OF_TEXTURE) + Constants.VISIBLE_TEXTURE_INDEX;
+        if((x >= 0) && (x < width) && (y >= 0) && (y < height)){
+            map[y][x] = map[y][x] - (map[y][x] % Constants.NUMBER_OF_TEXTURE) + Constants.VISIBLE_TEXTURE_INDEX;
         }
     }
     @Override
@@ -124,11 +123,11 @@ public class Map implements Cloneable{
     }
     private void findExit(){
         OUTER:
-        for (int i = 0; i < _map.length; i++) {
-            for (int j = 0; j < _map[i].length; j++) {
-                if ((_map[i][j] / Constants.NUMBER_OF_TEXTURE) == Constants.EXIT_CLASS_TEXTURE_INDEX){
-                    _exitX = j;
-                    _exitY = i;
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if ((map[i][j] / Constants.NUMBER_OF_TEXTURE) == Constants.EXIT_CLASS_TEXTURE_INDEX){
+                    exitX = j;
+                    exitY = i;
                     break OUTER;
                 }
             }

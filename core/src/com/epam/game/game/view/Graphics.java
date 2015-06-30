@@ -1,4 +1,4 @@
-package com.epam.game.game.logic;
+package com.epam.game.game.view;
 
 public interface Graphics {
 

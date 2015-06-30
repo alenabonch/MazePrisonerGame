@@ -1,53 +1,55 @@
-package com.epam.game.game.logic;
+package com.epam.game.game.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.epam.game.game.utils.Constants;
+import com.epam.game.game.logic.Moveable;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Hero extends Actor implements Moveable{
+public class Hero extends Actor implements Moveable {
 
     private static final String TAG = Hero.class.getName();
 
     private Texture texture = new Texture(Gdx.files.internal("boy.png"));
 
-    private int _x;
-    private int _y;
+    private int heroX;
+    private int heroY;
 
     private boolean isFlipped = true;
     private boolean isMovedLeft = false;
     private boolean isMovedRight = true;
-    private int	_health;
+    private int health;
 
-    private List<Item> _items = new LinkedList<Item>();
-    private int _sizeOfBag = Constants.SIZE_OF_BAG;
-    private int _numberOfItems;
+    private List<Item> items = new LinkedList<Item>();
+    private int sizeOfBag = Constants.SIZE_OF_BAG;
+    private int numberOfItems;
 
 	public Hero(int x, int y) {
         Gdx.app.log(TAG, "in constructor, hero created in x: " + x + ", y: " + y);
-		_health = Constants.START_HERO_HEALTH;
-		_x = x;
-		_y = y;
+		health = Constants.START_HERO_HEALTH;
+		heroX = x;
+		heroY = y;
 	}
 
     @Override
     public void moveLeft() {
-        _x--;
+        heroX--;
     }
     @Override
     public void moveRight() {
-        _x++;
+        heroX++;
     }
     @Override
     public void moveDown() {
-        _y--;
+        heroY--;
     }
     @Override
     public void moveUp() {
-        _y++;
+        heroY++;
     }
 
     @Override
@@ -84,39 +86,39 @@ public class Hero extends Actor implements Moveable{
         this.isMovedRight = isMovedRight;
     }
 
-    public int get_x() {
-        return _x;
+    public int getHeroX() {
+        return heroX;
     }
 
-    public int get_y() {
-        return _y;
+    public int getHeroY() {
+        return heroY;
     }
 
-    public void set_x(int _x) {
-        this._x = _x;
+    public void setHeroX(int xHero) {
+        this.heroX = xHero;
     }
 
-    public void set_y(int _y) {
-        this._y = _y;
+    public void setHeroY(int yHero) {
+        this.heroY = yHero;
     }
 
-    public int get_health() {
-        return _health;
+    public int getHealth() {
+        return health;
     }
 
     public boolean takeItem(Item item){
-        if(++_numberOfItems < _sizeOfBag){
-            _items.add(item);
+        if(++numberOfItems < sizeOfBag){
+            items.add(item);
             return true;
         }
         else
         {
-            _numberOfItems--;
+            numberOfItems--;
             return false;
         }
     }
 
     public void removeItem(Item item){
-        _items.remove(item);
+        items.remove(item);
     }
 }
