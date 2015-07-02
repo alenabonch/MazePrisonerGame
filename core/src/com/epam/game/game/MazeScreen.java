@@ -23,7 +23,6 @@ public class MazeScreen implements Screen {
 
         stage.act(delta);
         stage.draw();
-
     }
 
     @Override
