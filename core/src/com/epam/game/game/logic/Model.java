@@ -65,6 +65,11 @@ public class Model {
 			fireChangedEvent();
 		}
 	}
+//	public void moveToCoordinates(float x, float y){
+//		if(logic.moveToCoordinates(x, y)){
+//			fireChangedEvent();
+//		}
+//	}
 	public void openEyes(){
 		logic.openEyes(logic.getState().getHero().getHeroX(), logic.getState().getHero().getHeroY());
 		fireChangedEvent();

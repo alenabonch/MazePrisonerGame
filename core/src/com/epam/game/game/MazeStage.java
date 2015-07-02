@@ -89,7 +89,7 @@ public class MazeStage extends Stage {
         };
         controller.setView(view);
         controller.setModel(model);
-        Gdx.app.log(TAG, "Created Model, contoller, view");
+        Gdx.app.log(TAG, "Created Model, controller, view");
 
         controller.startGame();
         controller.onChange(model.getState());
@@ -138,10 +138,11 @@ public class MazeStage extends Stage {
                 return super.scrolled(event, x, y, amount);
             }
 
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return super.touchDown(event, x, y, pointer, button);
-            }
+//            @Override
+//            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+//                controller.moveToCoordinates(x, y);
+//                return true;
+//            }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {

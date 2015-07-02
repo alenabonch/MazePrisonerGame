@@ -25,12 +25,6 @@ public class Logic {
 		return false;
 	}
 
-    private void processMovement() {
-        activeTexture();
-        checkCollisions();
-        recalculateVisibility();
-    }
-
     boolean moveRight(){
 		if(canGo(1, 0))
 		{
@@ -60,6 +54,22 @@ public class Logic {
 		}
 		return false;
 	}
+
+//    boolean moveToCoordinates(float x, float y){
+//        if(canGo(x, y))
+//        {
+//            state.getHero().moveUp();
+//            processMovement();
+//            return true;
+//        }
+//        return false;
+//    }
+
+    private void processMovement() {
+        activeTexture();
+        checkCollisions();
+        recalculateVisibility();
+    }
 
 	void recalculateVisibility(){
 		for (int i = state.getHero().getHeroX() - Constants.MAX_VIEW_SIZE_RECALCULATE; i <= state.getHero().getHeroX() + Constants.MAX_VIEW_SIZE_RECALCULATE; i++) {
@@ -123,14 +133,6 @@ public class Logic {
         }
     }
 
-    private void onCollisionHeroWithItem(Item item){
-        List<Item> itemsOnMap = state.getCurrentLevel().getItemsOnMap();
-        List<Item> itemsInBag = state.getHero().getItemsInBag();
-
-        itemsInBag.add(item);
-        itemsOnMap.remove(item);
-    }
-
     private Item getItemUnderHero(){
         int heroX = state.getHero().getHeroX();
         int heroY = state.getHero().getHeroY();
@@ -143,6 +145,15 @@ public class Logic {
             }
         }
         return null;
+    }
+
+    private void onCollisionHeroWithItem(Item item){
+        List<Item> itemsOnMap = state.getCurrentLevel().getItemsOnMap();
+        List<Item> itemsInBag = state.getHero().getItemsInBag();
+
+        itemsInBag.add(item);
+        itemsOnMap.remove(item);
+        item.getStage().getRoot().removeActor(item);
     }
 
 	public State getState() {

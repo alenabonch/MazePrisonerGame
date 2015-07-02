@@ -6,39 +6,43 @@ public class Controller implements ModelListener{
 
 	private static final String TAG = Controller.class.getName();
 
-	private View _view;
-	private Model _model;
+	private View view;
+	private Model model;
 
 	public void startGame(){
-		_model.openEyes();
+		model.openEyes();
 	}
 
 	@Override
 	public void onChange(State state) {
-		_view.draw(state);
+		view.draw(state);
 	}
 
 	public void setModel(Model model) {
-		_model = model;
+		this.model = model;
 	}
 
 	public void setView(View view) {
-		_view = view;		
+		this.view = view;
 	}
 
 	public void moveLeft() {
-		_model.moveLeft();
+		model.moveLeft();
 	}
 
 	public void moveRight() {
-		_model.moveRight();
+		model.moveRight();
 	}
 
 	public void moveUp() {
-		_model.moveUp();
+		model.moveUp();
 	}
 
 	public void moveDown() {
-		_model.moveDown();
+		model.moveDown();
 	}
+
+//	public void moveToCoordinates(float x, float y) {
+//		model.moveToCoordinates(x, y);
+//	}
 }

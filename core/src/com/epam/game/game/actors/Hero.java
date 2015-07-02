@@ -116,7 +116,7 @@ public class Hero extends Actor implements Moveable {
 //        this.itemsInBag = itemsInBag;
 //    }
 
-    //    public boolean takeItem(Item item){
+//        public boolean takeItem(Item item){
 //        if(++numberOfItems < sizeOfBag){
 //            itemsInBag.add(item);
 //            return true;
