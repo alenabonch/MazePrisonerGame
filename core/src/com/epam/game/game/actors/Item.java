@@ -32,10 +32,10 @@ public class Item extends Actor {
     };
 
     public Item(int x, int y, int itemID) {
-        Gdx.app.log(TAG, "in constructor, hero created in x: " + x + ", y: " + y);
         itemX = x;
         itemY = y;
         texture = ARRAYS_OF_TEXTURES[itemID];
+        Gdx.app.log(TAG, "item created in x: " + x + ", y: " + y);
     }
 
     public int getItemX() {

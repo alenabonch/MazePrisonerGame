@@ -13,7 +13,7 @@ public class ItemGenerator {
         boolean findPlace = false;
         int x = 3;
         int y = 1;
-        int id = 0;
+        int id;
         while (!findPlace){
             x = Constants.RANDOM.nextInt(map.getWidth() / 2) * 2 + 1;
             y = Constants.RANDOM.nextInt(map.getHeight() / 2) * 2 + 1;

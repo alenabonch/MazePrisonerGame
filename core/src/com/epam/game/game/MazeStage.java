@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.epam.game.game.actors.Cell;
 import com.epam.game.game.actors.Hero;
 import com.epam.game.game.actors.Item;
+import com.epam.game.game.actors.Mob;
 import com.epam.game.game.logic.*;
 import com.epam.game.game.utils.Constants;
 import com.epam.game.game.view.View;
@@ -33,7 +34,9 @@ public class MazeStage extends Stage {
         model.addListener(controller);
         //todo
         View view = new View() {
-            private Cell[][] cells = new Cell[Constants.SIZE_MAP_X][Constants.SIZE_MAP_Y];
+    //        int width = model.getState().getCurrentLevel().getMap().getWidth();
+    //        int height = model.getState().getCurrentLevel().getMap().getHeight();
+            private Cell[][] cells = new Cell[SIZE_MAP_X][SIZE_MAP_Y];
 
             @Override
             protected void drawTexture(int textureIndex, int x, int y) {

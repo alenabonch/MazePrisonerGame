@@ -19,20 +19,22 @@ public class Hero extends Actor implements Moveable {
     private int heroX;
     private int heroY;
 
+    private int health;
+
     private boolean isFlipped = true;
     private boolean isMovedLeft = false;
     private boolean isMovedRight = true;
-    private int health;
 
-    private List<Item> items = new LinkedList<Item>();
+    private List<Item> itemsInBag = new LinkedList<Item>();
+
     private int sizeOfBag = Constants.SIZE_OF_BAG;
     private int numberOfItems;
 
 	public Hero(int x, int y) {
-        Gdx.app.log(TAG, "in constructor, hero created in x: " + x + ", y: " + y);
-		health = Constants.START_HERO_HEALTH;
 		heroX = x;
 		heroY = y;
+        health = Constants.START_HERO_HEALTH;
+        Gdx.app.log(TAG, "hero created in x: " + x + ", y: " + y);
 	}
 
     @Override
@@ -106,19 +108,27 @@ public class Hero extends Actor implements Moveable {
         return health;
     }
 
-    public boolean takeItem(Item item){
-        if(++numberOfItems < sizeOfBag){
-            items.add(item);
-            return true;
-        }
-        else
-        {
-            numberOfItems--;
-            return false;
-        }
+    public List<Item> getItemsInBag() {
+        return itemsInBag;
     }
 
-    public void removeItem(Item item){
-        items.remove(item);
-    }
+//    public void setItemsInBag(List<Item> itemsInBag) {
+//        this.itemsInBag = itemsInBag;
+//    }
+
+    //    public boolean takeItem(Item item){
+//        if(++numberOfItems < sizeOfBag){
+//            itemsInBag.add(item);
+//            return true;
+//        }
+//        else
+//        {
+//            numberOfItems--;
+//            return false;
+//        }
+//    }
+//
+//    public void removeItem(Item item){
+//        itemsInBag.remove(item);
+//    }
 }

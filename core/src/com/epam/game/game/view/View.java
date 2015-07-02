@@ -3,7 +3,7 @@ package com.epam.game.game.view;
 import com.badlogic.gdx.Gdx;
 import com.epam.game.game.actors.Hero;
 import com.epam.game.game.actors.Item;
-import com.epam.game.game.logic.Mob;
+import com.epam.game.game.actors.Mob;
 import com.epam.game.game.logic.State;
 
 import java.util.List;
@@ -24,8 +24,8 @@ public class View {
 		Gdx.app.log(TAG, "in draw(state)");
 		drawMap(state.getCurrentLevel().getMap().getData());
 		drawHero(state.getHero());
-		drawItems(state.getCurrentLevel().getItems(), state.getCurrentLevel().getMap().getData());
-//		drawMobs(state.getCurrentLevel().getMobs(), state.getCurrentLevel().getMap().getData());
+		drawItems(state.getCurrentLevel().getItemsOnMap(), state.getCurrentLevel().getMap().getData());
+//		drawMobs(state.getCurrentLevel().getMobsOnMap(), state.getCurrentLevel().getMap().getData());
 	}
 
 	protected void drawMobs(List<Mob> mobs, int[][] data) {

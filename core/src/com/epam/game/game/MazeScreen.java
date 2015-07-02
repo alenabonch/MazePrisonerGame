@@ -33,17 +33,17 @@ public class MazeScreen implements Screen {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
+        // TODO
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
+        // TODO
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
+        // TODO
     }
 
     @Override

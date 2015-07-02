@@ -28,7 +28,7 @@ public class Constants {
     public static final int EXIT_TEXTURE_INDEX = 6;
     public static final int EXIT_CLASS_TEXTURE_INDEX = 2;
 
-    public static final int SIZE_MAP_X = 17;
+    public static final int SIZE_MAP_X = 19;
     public static final int SIZE_MAP_Y = 15;
 
     public static final int HERO_TEXTURE = 9;

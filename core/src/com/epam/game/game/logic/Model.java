@@ -20,7 +20,8 @@ public class Model {
 		hero = new Hero(state.getCurrentLevel().getMap().getStartX(), state.getCurrentLevel().getMap().getStartY());
 		state.setHero(hero);
 		logic = new Logic(state);
-        Gdx.app.log(TAG, "Model created with hero: " + hero);
+//		hero.setItemsOnMap(state.getCurrentLevel().getItemsOnMap());
+        Gdx.app.log(TAG, "Model, state, logic and hero created");
 	}
 
 

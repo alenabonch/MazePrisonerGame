@@ -1,5 +1,7 @@
-package com.epam.game.game.logic;
+package com.epam.game.game.actors;
 
+import com.epam.game.game.logic.Level;
+import com.epam.game.game.logic.Moveable;
 import com.epam.game.game.utils.Constants;
 
 public class Mob implements Moveable {
