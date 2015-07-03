@@ -11,8 +11,8 @@ import com.epam.game.game.actors.Cell;
 import com.epam.game.game.actors.Hero;
 import com.epam.game.game.actors.Item;
 import com.epam.game.game.actors.Mob;
-import com.epam.game.game.logic.*;
-import com.epam.game.game.utils.Constants;
+import com.epam.game.game.logic.Controller;
+import com.epam.game.game.logic.Model;
 import com.epam.game.game.view.View;
 
 import java.util.List;
@@ -79,16 +79,14 @@ public class MazeStage extends Stage {
             protected void drawItems(List<Item> items, int[][] data) {
 
                 for (Item item : items) {
-                    if((data[item.getItemY()][item.getItemX()] % Constants.NUMBER_OF_TEXTURE ) == Constants.VISIBLE_TEXTURE_INDEX  ) {
+                    boolean isVisible = (data[item.getItemY()][item.getItemX()] % NUMBER_OF_TEXTURE) == VISIBLE_TEXTURE_INDEX;
+                    if(isVisible) {
                         Gdx.app.log(TAG, "ITEM!!!!");
                         MazeStage.this.addActor(item);
                         Gdx.app.log(TAG, "Added actor item");
                         item.setBounds(item.getItemX() * CELL_SIZE, item.getItemY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                         item.setVisible(true);
                     } else {
-                        Gdx.app.log(TAG, "ITEM!!!!");
-                        MazeStage.this.addActor(item);
-                        Gdx.app.log(TAG, "Added actor item");
                         item.setBounds(item.getItemX() * CELL_SIZE, item.getItemY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                         item.setVisible(false);
                     }
