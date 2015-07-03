@@ -32,7 +32,6 @@ public class MazeStage extends Stage {
         final Model model = new Model();
         final Controller controller = new Controller();
         model.addListener(controller);
-        //todo
         View view = new View() {
     //        int width = model.getState().getCurrentLevel().getMap().getWidth();
     //        int height = model.getState().getCurrentLevel().getMap().getHeight();
@@ -84,9 +83,14 @@ public class MazeStage extends Stage {
                         Gdx.app.log(TAG, "ITEM!!!!");
                         MazeStage.this.addActor(item);
                         Gdx.app.log(TAG, "Added actor item");
-
-                        item.setName("item");
                         item.setBounds(item.getItemX() * CELL_SIZE, item.getItemY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                        item.setVisible(true);
+                    } else {
+                        Gdx.app.log(TAG, "ITEM!!!!");
+                        MazeStage.this.addActor(item);
+                        Gdx.app.log(TAG, "Added actor item");
+                        item.setBounds(item.getItemX() * CELL_SIZE, item.getItemY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                        item.setVisible(false);
                     }
                 }
             }

@@ -131,14 +131,14 @@ public class MapGenerator {
         return templateArray;
     }
 
-    public static int[][] cleanMaze(int[][] drityArray){
-        for (int i = 0; i < drityArray.length; i++) {
-            for (int j = 0; j < drityArray[i].length; j++) {
-                if(drityArray[i][j] < 0)
-                    drityArray[i][j] = Constants.GROUND_TEXTURE_INDEX;
+    public static int[][] cleanMaze(int[][] dirtyArray){
+        for (int i = 0; i < dirtyArray.length; i++) {
+            for (int j = 0; j < dirtyArray[i].length; j++) {
+                if(dirtyArray[i][j] < 0)
+                    dirtyArray[i][j] = Constants.GROUND_TEXTURE_INDEX;
             }
         }
-        return drityArray;
+        return dirtyArray;
     }
 
     private static boolean createWall(){

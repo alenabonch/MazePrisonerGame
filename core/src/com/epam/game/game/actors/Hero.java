@@ -63,7 +63,6 @@ public class Hero extends Actor implements Moveable {
                 texture.getWidth(), texture.getHeight(), isFlipped, false);
     }
 
-
     public boolean isFlipped() {
         return isFlipped;
     }

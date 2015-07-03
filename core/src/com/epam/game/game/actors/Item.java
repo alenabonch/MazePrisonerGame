@@ -6,15 +6,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.epam.game.game.utils.Constants;
 
-import static com.epam.game.game.utils.Constants.NUMBER_OF_TEXTURE;
-
 public class Item extends Actor {
 
     private static final String TAG = Item.class.getName();
     private int itemX;
     private int itemY;
     private Texture texture;
-
 
     static private Texture[] ARRAYS_OF_TEXTURES = {
             new Texture(Gdx.files.internal("key1.png")),
@@ -38,6 +35,15 @@ public class Item extends Actor {
         Gdx.app.log(TAG, "item created in x: " + x + ", y: " + y);
     }
 
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+
+        batch.draw(texture, getX(), getY(), this.getOriginX(),
+                this.getOriginY(), Constants.CELL_SIZE, Constants.CELL_SIZE,
+                this.getScaleX(), this.getScaleY(), this.getRotation(), 0, 0,
+                texture.getWidth(), texture.getHeight(), false, false);
+    }
+
     public int getItemX() {
         return itemX;
     }
@@ -51,26 +57,4 @@ public class Item extends Actor {
         return ARRAYS_OF_TEXTURES.length;
     }
 
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-
-        batch.draw(texture, getX(), getY(), this.getOriginX(),
-                this.getOriginY(), Constants.CELL_SIZE, Constants.CELL_SIZE,
-                this.getScaleX(), this.getScaleY(), this.getRotation(), 0, 0,
-                texture.getWidth(), texture.getHeight(), false, false);
-    }
-
-    public void setTextureIndex(int textureIndex) {
-
-        if (textureIndex % NUMBER_OF_TEXTURE == 0){
-            texture = ARRAYS_OF_TEXTURES[0];
-        }
-        else
-        {
-            int calc = (textureIndex / NUMBER_OF_TEXTURE) * (NUMBER_OF_TEXTURE - 1)
-                    + (textureIndex % NUMBER_OF_TEXTURE);
-            System.out.println(calc);
-            texture = ARRAYS_OF_TEXTURES[calc];
-        }
-    }
 }
