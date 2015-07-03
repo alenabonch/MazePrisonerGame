@@ -56,10 +56,14 @@ public class MazeStage extends Stage {
 
             @Override
             protected void drawHero(Hero hero) {
-                MazeStage.this.addActor(hero);
-                Gdx.app.log(TAG, "Added actor hero");
-                hero.setName("hero");
-                hero.setBounds(hero.getHeroX() * CELL_SIZE, hero.getHeroY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                if (MazeStage.this.getRoot().findActor("hero") == null) {
+                    MazeStage.this.addActor(hero);
+                    Gdx.app.log(TAG, "Added actor hero");
+                    hero.setName("hero");
+                    hero.setBounds(hero.getHeroX() * CELL_SIZE, hero.getHeroY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                } else {
+                    hero.setBounds(hero.getHeroX() * CELL_SIZE, hero.getHeroY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                }
             }
 
             @Override
