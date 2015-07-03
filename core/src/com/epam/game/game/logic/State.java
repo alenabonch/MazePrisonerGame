@@ -42,7 +42,7 @@ public class State implements Cloneable{
 	public void incLevel(){
 
 		levelNum++;
-		if(levelNum > Constants.MAX_LEVEL){
+		if(levelNum >= Constants.MAX_LEVEL){
 			//Game End!! YOU WIN!
 		}else if (levels[levelNum] == null){
 			levels[levelNum] = new Level(levelNum);

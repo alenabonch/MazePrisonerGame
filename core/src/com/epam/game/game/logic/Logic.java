@@ -109,9 +109,8 @@ public class Logic {
 		if (state.getCurrentLevel().getMap().ifFree(state.getHero().getHeroX() +
 				x * Constants.STEP_SIZE, state.getHero().getHeroY() + y * Constants.STEP_SIZE)){
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
     private void activeTexture(){
@@ -119,7 +118,9 @@ public class Logic {
         int y = state.getHero().getHeroY();
         switch (state.getCurrentLevel().getMap().activeTexture(x, y)) {
             case Constants.EXIT_CLASS_TEXTURE_INDEX:
-                state.incLevel();
+				if(state.getCurrentLevel().getItemsOnMap().isEmpty()) {
+					state.incLevel();
+				}
                 break;
             default:
                 break;

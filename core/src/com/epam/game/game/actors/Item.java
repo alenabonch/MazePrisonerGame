@@ -15,6 +15,7 @@ public class Item extends Actor {
     private int itemY;
     private Texture texture;
 
+
     static private Texture[] ARRAYS_OF_TEXTURES = {
             new Texture(Gdx.files.internal("key1.png")),
             new Texture(Gdx.files.internal("key1.png")),
@@ -28,7 +29,6 @@ public class Item extends Actor {
 //            new Texture(Gdx.files.internal("door-close-mist.png")),
 //            new Texture(Gdx.files.internal("door-locked.png")),
 //            new Texture(Gdx.files.internal("door-locked-mist.png")),
-
     };
 
     public Item(int x, int y, int itemID) {
