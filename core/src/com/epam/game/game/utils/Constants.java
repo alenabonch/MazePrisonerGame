@@ -32,7 +32,7 @@ public class Constants {
     public static final int SIZE_MAP_Y = 15;
 
     public static final int HERO_TEXTURE = 9;
-    public static final int HERO_PLACE_INDEX = 100; //not equal other texture
+    public static final int IN_TEXTURE_INDEX = 100; //not equal other texture
 
     public static final int TEXTURE_SIZE = 20;
 

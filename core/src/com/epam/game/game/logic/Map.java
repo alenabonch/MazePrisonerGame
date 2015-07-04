@@ -133,11 +133,11 @@ public class Map implements Cloneable{
         }
     }
     private void findIn(){
-        map = MapGenerator.searchEndOfMedian(map, exitX, exitY, Constants.HERO_PLACE_INDEX);
+        map = MapGenerator.searchEndOfMedian(map, exitX, exitY, Constants.IN_TEXTURE_INDEX);
         OUTER:
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                if (map[i][j] == Constants.HERO_PLACE_INDEX){
+                if (map[i][j] == Constants.IN_TEXTURE_INDEX){
                     startHeroY = i;
                     startHeroX = j;
                     map[i][j] = Constants.GROUND_TEXTURE_INDEX;
