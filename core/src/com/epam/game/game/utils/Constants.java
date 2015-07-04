@@ -13,7 +13,7 @@ public class Constants {
     public static final int START_MOBS_HEALTH = 3;
 
     public static final int STEP_SIZE = 1;
-    public static final int MAX_VIEW_SIZE = 2;
+    public static final int MAX_VIEW_SIZE = 3;
     public static final int MAX_VIEW_SIZE_RECALCULATE = MAX_VIEW_SIZE + 2;
 
     public static final int NUMBER_OF_TEXTURE = 3;

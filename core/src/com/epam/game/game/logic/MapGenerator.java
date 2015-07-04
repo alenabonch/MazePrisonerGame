@@ -2,6 +2,9 @@ package com.epam.game.game.logic;
 
 import com.epam.game.game.utils.Constants;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MapGenerator {
 
     static private int activeRow;
@@ -27,7 +30,7 @@ public class MapGenerator {
             newArray = refreshValues(randomFloor(randomWall(newArray)));
         }
         newArray = cleanMaze(createEdgeWalls(randomWall(newArray)));
-        newArray = createExit(newArray);
+        newArray = createExit(newArray,1 ,1);
         return cleanMaze(newArray);
     }
 
@@ -172,10 +175,48 @@ public class MapGenerator {
             return Constants.RANDOM.nextInt(Math.abs(b - a)) + Math.min(a, b);
         }
     }
-    private static int[][] createExit(int[][] labyrinth){
-        labyrinth[labyrinth.length - 2][labyrinth[0].length -2] = Constants.EXIT_TEXTURE_INDEX;
-        return labyrinth;
+    private static int[][] createExit(int[][] labyrinth, final int x, final int y){
+        int stepNumber = -1;
+        int nextX = x;
+        int nextY = y;
+        Queue<Integer> queueOfCoordinates = new LinkedList<>();
+        labyrinth[y][x] = stepNumber--;
+        addXY2Queue(x, y, queueOfCoordinates);//FIFO
+
+        while(!queueOfCoordinates.isEmpty()){
+            nextX = queueOfCoordinates.remove();//FIFO
+            nextY = queueOfCoordinates.remove();
+            nextStep(labyrinth, nextX, nextY, stepNumber--, queueOfCoordinates);
+        }
+        labyrinth[nextY][nextX] = Constants.EXIT_TEXTURE_INDEX;
+        return cleanMaze(labyrinth);
     }
 
+    private static int[][]  createEntrance(int[][] labyrinth, int x, int y) {
+        return cleanMaze(labyrinth);
+    }
 
+    private static int[][] nextStep(int[][] labyrinth, int x, int y, int step, Queue<Integer> queueOfCoordinates){
+        if(labyrinth[y + 1][x] == Constants.GROUND_TEXTURE_INDEX){
+            labyrinth[y + 1][x] = step;
+            addXY2Queue(x, y + 1, queueOfCoordinates);//FIFO
+        }
+        if(labyrinth[y - 1][x] == Constants.GROUND_TEXTURE_INDEX){
+            labyrinth[y - 1][x] = step;
+            addXY2Queue(x, y - 1, queueOfCoordinates);//FIFO
+        }
+        if(labyrinth[y][x + 1] == Constants.GROUND_TEXTURE_INDEX){
+            labyrinth[y][x + 1] = step;
+            addXY2Queue(x + 1, y, queueOfCoordinates);//FIFO
+        }
+        if(labyrinth[y][x - 1] == Constants.GROUND_TEXTURE_INDEX){
+            labyrinth[y][x - 1] = step;
+            addXY2Queue(x - 1, y, queueOfCoordinates);//FIFO
+        }
+        return labyrinth;
+    }
+    private static void addXY2Queue(final int x, final int y, Queue<Integer> queueOfCoordinates){
+        queueOfCoordinates.add(x);
+        queueOfCoordinates.add(y);
+    }
 }
