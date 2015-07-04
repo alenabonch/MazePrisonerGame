@@ -21,7 +21,8 @@ public class Map implements Cloneable{
 
     Map(final int width,final int height) {
         map = createMap(width, height);
-        findExit();
+        findOut();
+        findIn();
         this.height = map.length;
         this.width = map[this.height - 1].length;
         Gdx.app.log(TAG, "Map created, width = " + width + " height = " + height);
@@ -85,8 +86,6 @@ public class Map implements Cloneable{
     }
 
     private int[][] createMap(int width, int height){
-        startHeroX = 1;
-        startHeroY = 1;
         if (width % 2 == 0)
             width++;
 
@@ -121,13 +120,27 @@ public class Map implements Cloneable{
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
-    private void findExit(){
+    private void findOut(){
         OUTER:
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 if ((map[i][j] / Constants.NUMBER_OF_TEXTURE) == Constants.EXIT_CLASS_TEXTURE_INDEX){
                     exitX = j;
                     exitY = i;
+                    break OUTER;
+                }
+            }
+        }
+    }
+    private void findIn(){
+        map = MapGenerator.searchEndOfMedian(map, exitX, exitY, Constants.HERO_PLACE_INDEX);
+        OUTER:
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if (map[i][j] == Constants.HERO_PLACE_INDEX){
+                    startHeroY = i;
+                    startHeroX = j;
+                    map[i][j] = Constants.GROUND_TEXTURE_INDEX;
                     break OUTER;
                 }
             }

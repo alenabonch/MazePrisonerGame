@@ -30,7 +30,7 @@ public class MapGenerator {
             newArray = refreshValues(randomFloor(randomWall(newArray)));
         }
         newArray = cleanMaze(createEdgeWalls(randomWall(newArray)));
-        newArray = createExit(newArray,1 ,1);
+        newArray = searchEndOfMedian(newArray, 1, 1, Constants.EXIT_TEXTURE_INDEX);
         return cleanMaze(newArray);
     }
 
@@ -144,7 +144,7 @@ public class MapGenerator {
         return dirtyArray;
     }
 
-    private static boolean createWall(){
+    static boolean createWall(){
         return(Constants.RANDOM.nextBoolean());
     }
 
@@ -175,10 +175,11 @@ public class MapGenerator {
             return Constants.RANDOM.nextInt(Math.abs(b - a)) + Math.min(a, b);
         }
     }
-    private static int[][] createExit(int[][] labyrinth, final int x, final int y){
+    static int[][] searchEndOfMedian(int[][] labyrinth, final int x, final int y, int indexEnd){
         int stepNumber = -1;
         int nextX = x;
         int nextY = y;
+        int indexXY = labyrinth[y][x];
         Queue<Integer> queueOfCoordinates = new LinkedList<>();
         labyrinth[y][x] = stepNumber--;
         addXY2Queue(x, y, queueOfCoordinates);//FIFO
@@ -188,7 +189,8 @@ public class MapGenerator {
             nextY = queueOfCoordinates.remove();
             nextStep(labyrinth, nextX, nextY, stepNumber--, queueOfCoordinates);
         }
-        labyrinth[nextY][nextX] = Constants.EXIT_TEXTURE_INDEX;
+        labyrinth[nextY][nextX] = indexEnd;
+        labyrinth[y][x] = indexXY;
         return cleanMaze(labyrinth);
     }
 
