@@ -140,7 +140,7 @@ public class Map implements Cloneable{
                 if (map[i][j] == Constants.IN_TEXTURE_INDEX){
                     startHeroY = i;
                     startHeroX = j;
-                    map[i][j] = Constants.GROUND_TEXTURE_INDEX;
+//                    map[i][j] = Constants.GROUND_TEXTURE_INDEX;
                     break OUTER;
                 }
             }

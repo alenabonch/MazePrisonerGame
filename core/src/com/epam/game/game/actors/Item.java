@@ -15,10 +15,13 @@ public class Item extends Actor {
 
     static private Texture[] ARRAYS_OF_TEXTURES = {
             new Texture(Gdx.files.internal("key1.png")),
-            new Texture(Gdx.files.internal("key1.png")),
-            new Texture(Gdx.files.internal("key2.png")),
-            new Texture(Gdx.files.internal("key2.png")),
-//            new Texture(Gdx.files.internal("gold.png")),
+//            new Texture(Gdx.files.internal("key2.png")),
+            new Texture(Gdx.files.internal("Mountain_of_gold.png")),
+            new Texture(Gdx.files.internal("princess1.png")),
+            new Texture(Gdx.files.internal("princess2.png")),
+            new Texture(Gdx.files.internal("princess3.png")),
+            new Texture(Gdx.files.internal("princess4.png")),
+            new Texture(Gdx.files.internal("princess5.png")),
 //            new Texture(Gdx.files.internal("chest.png")),
 //            new Texture(Gdx.files.internal("castle.png")),
 //            new Texture(Gdx.files.internal("door-opened.png")),
