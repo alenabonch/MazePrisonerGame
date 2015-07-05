@@ -21,7 +21,7 @@ public class Cell extends Actor {
             new Texture(Gdx.files.internal("grass.png")),
             new Texture(Gdx.files.internal("wall444.png")),
             new Texture(Gdx.files.internal("wall1.png")),
-            new Texture(Gdx.files.internal("castle.png")),
+            new Texture(Gdx.files.internal("castle-mist.png")),
             new Texture(Gdx.files.internal("castle.png")),
             new Texture(Gdx.files.internal("ladder-mist.png")),
             new Texture(Gdx.files.internal("ladder.png")),

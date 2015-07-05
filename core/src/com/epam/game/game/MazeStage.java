@@ -3,9 +3,11 @@ package com.epam.game.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.epam.game.game.actors.Cell;
 import com.epam.game.game.actors.Hero;
@@ -55,14 +57,10 @@ public class MazeStage extends Stage {
 
             @Override
             protected void drawHero(Hero hero) {
-                if (MazeStage.this.getRoot().findActor("hero") == null) {
-                    MazeStage.this.addActor(hero);
-                    Gdx.app.log(TAG, "Added actor hero");
-                    hero.setName("hero");
-                    hero.setBounds(hero.getHeroX() * CELL_SIZE, hero.getHeroY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-                } else {
-                    hero.setBounds(hero.getHeroX() * CELL_SIZE, hero.getHeroY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-                }
+                MazeStage.this.addActor(hero);
+                Gdx.app.log(TAG, "Added actor hero");
+                hero.setName("hero");
+                hero.setBounds(hero.getHeroX() * CELL_SIZE, hero.getHeroY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
             }
 
             @Override
@@ -83,7 +81,10 @@ public class MazeStage extends Stage {
                     if(isVisible) {
                         Gdx.app.log(TAG, "ITEM!!!!");
                         MazeStage.this.addActor(item);
-                        Gdx.app.log(TAG, "Added actor item");
+                        Array<Actor> actors = MazeStage.this.getActors();
+                        for (Actor actor : actors) {
+                            System.out.println(actor.toString() + " ");
+                        }
                         item.setBounds(item.getItemX() * CELL_SIZE, item.getItemY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                         item.setVisible(true);
                     } else {
