@@ -32,7 +32,7 @@ public class Constants {
     public static final int SIZE_MAP_Y = 15;
 
     public static final int HERO_TEXTURE = 101;
-    public static final int IN_TEXTURE_INDEX = 7; //not equal other texture
+    public static final int IN_TEXTURE_INDEX = 9; //not equal other texture
 
     public static final int TEXTURE_SIZE = 20;
 
@@ -40,3 +40,17 @@ public class Constants {
     public static final int ORIGIN_Y = 750;
     public static final int SIZE_OF_BAG = 5;
 }
+/*
+0 - Ground black
+1 - Ground mist
+2 - Ground bright
+3 - Wall black
+4 - Wall mist
+5 - Wall bright
+6 - Exit black
+7 - Exit mist
+8 - Exit bright
+9 - in black
+10 - in mist
+11 - in bright
+ */
